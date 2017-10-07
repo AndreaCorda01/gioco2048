@@ -1,0 +1,287 @@
+$moltiplicatore: 1.0;
+
+$background-tassello: #75689D;
+$background: none;
+$background_body: #3E2E75;
+$casella_border: trasparent;
+
+
+$punteggio_sfondo: #C7B7FF;
+
+$liv1: #FEEA3A;
+$liv2: #FEC006;
+$liv3: #FE9700;
+$liv4: #FE5622;
+$liv5: #CCDB38;
+$liv6: #8AC249;
+$liv7: #4BAE4F;
+$liv8: #009587;
+$liv9: #00BBD3;
+$liv10: #02A8F3;
+$liv11: #2095F2;
+$liv12: #3E50B4;
+/* https://www.materialpalette.com/ */
+
+
+$spazio: 10px * $moltiplicatore;
+$casella: 100px * $moltiplicatore;
+
+$font1 : 65px;
+$font2 : 50px;
+$font3 : 40px;
+$font4 : 30px;
+
+$width_tabellone: $spazio * 4.5 + $casella * 4;
+$height_tabellone: $spazio * 4 + $casella * 4;
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+@mixin webkit(){
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appareance: none;
+    appearance: none;
+}
+
+body{
+    background: $background_body;
+}
+
+.title{
+    font-family: 'Lato', sans-serif;
+    font-size: 128px;
+    color: white;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.button.primary-button,.button.primary-button:visited,.button.primary-button:active{
+    background-color: #fff;
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    border: none;
+    padding-bottom: 6px;
+    padding-top: 6px;
+    padding-left: 25px;
+    padding-right: 25px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in, transform 0.2s ease-in;
+}
+
+.button.primary-button:hover,
+.button.primary-button:focus{
+    background-color: #C7B7FF;
+    transition: background-color 0.2s ease-in,transform 0.2s ease-in;
+    transform: scale(1.1);
+}
+
+.button.button-reset{
+    position: absolute;
+    bottom: 10px;
+}
+.punteggio{
+    padding: 5px;
+    background-color: $punteggio_sfondo;
+    border-radius: 7px;
+    width: 100px;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    font-size:16px;
+    float: left;
+    margin-right: 10px;
+    margin-bottom:10px;
+}
+
+.punteggio > span{
+    font-family: 'Lato', sans-serif;
+}
+.punteggio > .titolo{
+    font-size: 16px;
+    text-transform: uppercase;
+}
+.punteggio > .valore{
+    font-size: 20px;
+    font-weight: bold;
+}
+.game-header{
+    margin-top: 15px;
+    width: $width_tabellone*0.95;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    position: relative;
+}
+.tabellone{
+    border: 1px solid $casella_border;
+    background-color: $background;
+    width: $width_tabellone;
+    height: $height_tabellone;
+    padding-left: 0.5 * $spazio;
+    padding-bottom: 0.5 * $spazio;
+    padding-top: 0.5 * $spazio;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    @include webkit()
+}
+
+.casella-container{
+    width: $casella - 2;
+    height: $casella - 2;
+    margin-left: $spazio / 2 ;
+    margin-top: $spazio / 2;
+    margin-right: $spazio / 2 ;
+    margin-bottom: $spazio / 2;
+    border: 0;
+    padding: 0;
+    background-color: $background-tassello;
+    font-size: $font1;
+    font-family: 'Lato', sans-serif;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid $casella_border;
+    border-radius:6px;
+}
+.casella{
+    -webkit-appearance: none;
+    list-style-type: none;
+    display:block;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.clear{clear:both;}
+.right{float:right}
+.left{float:left}
+.casella{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.liv0{ @extend .casella; }
+.liv1{ @extend .casella; background-color: $liv1;font-size: $font1;}
+.liv2{ @extend .casella; background-color: $liv2;font-size: $font1;}
+.liv3{ @extend .casella; background-color: $liv3;font-size: $font1;}
+.liv4{ @extend .casella; background-color: $liv4;font-size: $font1;}
+.liv5{ @extend .casella; background-color: $liv5;font-size: $font2;}
+.liv6{ @extend .casella; background-color: $liv6;font-size: $font2;}
+.liv7{ @extend .casella; background-color: $liv7;font-size: $font2;}
+.liv8{ @extend .casella; background-color: $liv8;font-size: $font3;}
+.liv9{ @extend .casella; background-color: $liv9;font-size: $font3;}
+.liv10{ @extend .casella; background-color: $liv10;font-size: $font3}
+.liv11{ @extend .casella; background-color: $liv11;font-size: $font4}
+.liv12{ @extend .casella; background-color: $liv12;font-size: $font4}
+
+
+/* EFFETTI */
+
+//Bottom
+$tempo: 0.1s;
+$tempo_scale: 0.5s;
+
+@for $i from 1 through 3 {
+    //SUU
+    @keyframes up#{$i} {
+      0% {bottom: 0px;}
+      100% { 
+          position: relative;
+          bottom: ($spazio + $casella)*$i; 
+      }
+    }
+    
+    @-webkit-keyframes up#{$i} {
+      0% {bottom: 0px;}
+      100% { 
+          position: relative;
+          bottom: ($spazio + $casella)*$i; 
+      }
+    }
+
+    .up-#{$i} {
+        animation:  up#{$i} $tempo linear 0s forwards 1 normal; 
+    }
+    
+    //GIUU
+    @keyframes down#{$i} {
+      0% {top: 0px;}
+      100% { 
+          position: relative;
+          top: ($spazio + $casella)*$i; 
+      }
+    }
+    
+    @-webkit-keyframes down#{$i} {
+      0% {top: 0px;}
+      100% { 
+          position: relative;
+          top: ($spazio + $casella)*$i; 
+      }
+    }
+
+    .down-#{$i} {
+        animation:  down#{$i} $tempo linear 0s forwards 1 normal; 
+    }
+    
+    //LEFT
+    @keyframes left#{$i} {
+      0% {right: 0px;}
+      100% { 
+          position: relative;
+          right: ($spazio + $casella)*$i; 
+      }
+    }
+    
+    @-webkit-keyframes left#{$i} {
+      0% {right: 0px;}
+      100% { 
+          position: relative;
+          right: ($spazio + $casella)*$i; 
+      }
+    }
+
+    .left-#{$i} {
+        animation:  left#{$i} $tempo linear 0s forwards 1 normal; 
+    }
+
+    //RIGHT
+    @keyframes right#{$i} {
+      0% {left: 0px;}
+      100% { 
+          position: relative;
+          left: ($spazio + $casella)*$i; 
+      }
+    }
+    
+    @-webkit-keyframes right#{$i} {
+      0% {left: 0px;}
+      100% { 
+          position: relative;
+          left: ($spazio + $casella)*$i; 
+      }
+    }
+
+    .right-#{$i} {
+        animation:  right#{$i} $tempo linear 0s forwards 1 normal; 
+    }
+    
+}
+
+
+@keyframes unisci{
+    0% { transform: scale(1);}
+    50% { transform: scale(1.40);}
+    100% { transform: scale(1);}
+}
+
+.unisci{
+    animation: unisci $tempo_scale linear 0s forwards 1 normal;
+}
+
+
+/* POSIZIONI TABELLONE GIOCO */
